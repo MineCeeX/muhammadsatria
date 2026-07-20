@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Portfolio Biodata
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   *{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins,sans-serif;background:#090909;color:#eee;overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;inset:auto;width:45vw;height:45vw;border-radius:50%;filter:blur(90px);z-index:-1}
+body:before{background:#6663;left:-10vw;top:-10vw}body:after{background:#fff1;right:-10vw;bottom:-10vw}
+.wrap{width:min(1180px,92%);margin:auto}
+.hero{min-height:90vh;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:40px}
+h1{font-size:clamp(3rem,8vw,6rem);line-height:.95}.muted{color:#aaa}
+.btn{display:inline-block;margin-top:28px;padding:14px 28px;border:1px solid #666;border-radius:999px;color:#fff;text-decoration:none}
+.panel{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:24px;box-shadow:0 20px 50px #0007}
+.profile{padding:30px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:40px 0}
+.card{padding:28px}
+table{width:100%;border-collapse:collapse}td{padding:14px;border-bottom:1px solid #ffffff15}
+.photo img{width:100%;border-radius:18px;display:block}
+.badge{display:inline-block;background:#2e2e2e;padding:8px 14px;border-radius:999px;margin:6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+li{margin:10px 0}
+footer{text-align:center;color:#777;padding:40px}
+@media(max-width:900px){.hero,.grid,.cols{grid-template-columns:1fr}}
+  </style>
+ </head>
+ <body>
+  <div class="wrap">
+   <section class="hero">
+    <div>
+     <div class="muted">
+      PORTFOLIO / BIODATA
+     </div>
+     <h1>
+      MUHAMMAD
+      <br/>
+      SATRIA
+     </h1>
+     <p class="muted" style="margin-top:20px;max-width:520px">
+      Siswa Rekayasa Perangkat Lunak yang tertarik pada komputer, pemrograman, gitar, gaming, dan dunia audio.
+     </p>
+     <a class="btn" href="#info">
+      Lihat Profil
+     </a>
+    </div>
+    <div class="panel profile">
+     <h2>
+      Quick Info
+     </h2>
+     <table>
+      <tr>
+       <td>
+        Nama
+       </td>
+       <td>
+        Muhammad Satria
+       </td>
+      </tr>
+      <tr>
+       <td>
+        Jurusan
+       </td>
+       <td>
+        RPL
+       </td>
+      </tr>
+      <tr>
+       <td>
+        Alamat
+       </td>
+       <td>
+        Semarang, Jawa Tengah
+       </td>
+      </tr>
+      <tr>
+       <td>
+        Hobi
+       </td>
+       <td>
+        Gaming • Gitar • Audiophile
+       </td>
+      </tr>
+     </table>
+    </div>
+   </section>
+   <div class="grid" id="info">
+    <div class="panel card">
+     <h2>
+      Tentang Saya
+     </h2>
+     <p style="line-height:2;color:#cfcfcf;margin-top:14px">
+      Saya senang mempelajari teknologi dan terus mengembangkan kemampuan di bidang perangkat lunak. Saya menikmati tantangan baru dan selalu berusaha menyelesaikan pekerjaan dengan baik.
+     </p>
+     <div style="margin-top:20px">
+      <span class="badge">
+       HTML
+      </span>
+      <span class="badge">
+       CSS
+      </span>
+      <span class="badge">
+       RPL
+      </span>
+      <span class="badge">
+       Gaming
+      </span>
+      <span class="badge">
+       Gitar
+      </span>
+     </div>
+    </div>
+    <div class="panel card photo">
+     <h2>
+      Foto Hobi
+     </h2>
+     <img src="hobi.jpeg"/>
+     <p class="muted" style="margin-top:12px">
+      foto salah satu hobi dadakan pas nugas ini
+      <b>
+       hobi.jpeg
+      </b>
+      .
+     </p>
+    </div>
+    <div class="panel card cols">
+     <div>
+      <h2>
+       Kelebihan
+      </h2>
+      <ul>
+       <li>
+        Mudah belajar
+       </li>
+       <li>
+        Bertanggung jawab
+       </li>
+       <li>
+        Disiplin
+       </li>
+       <li>
+        Mengikuti bantara
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h2>
+       Kekurangan
+      </h2>
+      <ul>
+       <li>
+        Masih meningkatkan public speaking
+       </li>
+       <li>
+        Terkadang terlalu fokus pada hobi
+       </li>
+       <li>
+        Masih terus belajar
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="panel card">
+     <h2>
+      Quote
+     </h2>
+     <p style="font-size:1.4rem;line-height:1.8;color:#ddd">
+      "Terus belajar, terus berkembang, dan jangan takut mencoba hal baru."
+     </p>
+    </div>
+   </div>
+   <footer>
+    Designed in Monochrome Style • 2026
+   </footer>
+  </div>
+ </body>
+</html>
