@@ -4,34 +4,651 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1" name="viewport"/>
   <title>
-   Portfolio Biodata
+   Portfolio Biodata - Muhammad Satria
   </title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
   <style>
-   *{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins,sans-serif;background:#090909;color:#eee;overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;inset:auto;width:45vw;height:45vw;border-radius:50%;filter:blur(90px);z-index:-1}
-body:before{background:#6663;left:-10vw;top:-10vw}body:after{background:#fff1;right:-10vw;bottom:-10vw}
-.wrap{width:min(1180px,92%);margin:auto}
-.hero{min-height:90vh;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:40px}
-h1{font-size:clamp(3rem,8vw,6rem);line-height:.95}.muted{color:#aaa}
-.btn{display:inline-block;margin-top:28px;padding:14px 28px;border:1px solid #666;border-radius:999px;color:#fff;text-decoration:none}
-.panel{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:24px;box-shadow:0 20px 50px #0007}
-.profile{padding:30px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:40px 0}
-.card{padding:28px}
-table{width:100%;border-collapse:collapse}td{padding:14px;border-bottom:1px solid #ffffff15}
-.photo img{width:100%;border-radius:18px;display:block}
-.badge{display:inline-block;background:#2e2e2e;padding:8px 14px;border-radius:999px;margin:6px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-li{margin:10px 0}
-footer{text-align:center;color:#777;padding:40px}
-@media(max-width:900px){.hero,.grid,.cols{grid-template-columns:1fr}}
+   /* Reset & Variabel Global */
+   *{
+     margin:0;
+     padding:0;
+     box-sizing:border-box;
+     scroll-behavior: smooth;
+   }
+   
+   :root {
+     --bg-color: #050505;
+     --accent-color: #ffffff;
+     --text-primary: #f3f4f6;
+     --text-muted: #9ca3af;
+     --panel-bg: rgba(255, 255, 255, 0.03);
+     --panel-border: rgba(255, 255, 255, 0.08);
+     --panel-hover-bg: rgba(255, 255, 255, 0.06);
+     --panel-hover-border: rgba(255, 255, 255, 0.15);
+     --glow-color: rgba(255, 255, 255, 0.05);
+   }
+
+   body {
+     font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+     background: var(--bg-color);
+     color: var(--text-primary);
+     overflow-x: hidden;
+     position: relative;
+     min-height: 100vh;
+   }
+
+   /* Efek Interaktif Latar Belakang (Glow Tracker) */
+   .bg-glow-container {
+     position: fixed;
+     inset: 0;
+     pointer-events: none;
+     z-index: -1;
+     overflow: hidden;
+   }
+
+   .glow-spot {
+     position: absolute;
+     width: 600px;
+     height: 600px;
+     border-radius: 50%;
+     background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%);
+     transform: translate(-50%, -50%);
+     transition: width 0.3s, height 0.3s;
+     pointer-events: none;
+     top: -999px;
+     left: -999px;
+   }
+
+   /* Ornamen Latar Belakang Statis Beranimasi */
+   body::before, body::after {
+     content: "";
+     position: fixed;
+     width: 50vw;
+     height: 50vw;
+     border-radius: 50%;
+     filter: blur(120px);
+     z-index: -2;
+     opacity: 0.6;
+     pointer-events: none;
+   }
+   body::before {
+     background: radial-gradient(circle, rgba(100, 100, 100, 0.1) 0%, transparent 80%);
+     left: -15vw;
+     top: -15vw;
+     animation: pulseGlow 12s infinite alternate ease-in-out;
+   }
+   body::after {
+     background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 80%);
+     right: -15vw;
+     bottom: -15vw;
+     animation: pulseGlow 16s infinite alternate-reverse ease-in-out;
+   }
+
+   @keyframes pulseGlow {
+     0% { transform: scale(1) translate(0, 0); }
+     100% { transform: scale(1.15) translate(3vw, 2vw); }
+   }
+
+   .wrap {
+     width: min(1200px, 92%);
+     margin: auto;
+     position: relative;
+     z-index: 10;
+   }
+
+   /* Animasi Pembuka (Intro) */
+   @keyframes fadeInUp {
+     from {
+       opacity: 0;
+       transform: translateY(30px);
+     }
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+
+   @keyframes fadeIn {
+     from { opacity: 0; }
+     to { opacity: 1; }
+   }
+
+   /* Hero Section */
+   .hero {
+     min-height: 95vh;
+     display: grid;
+     grid-template-columns: 1.2fr 0.8fr;
+     align-items: center;
+     gap: 50px;
+     padding: 40px 0;
+   }
+
+   .hero-content {
+     animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+   }
+
+   .muted {
+     color: var(--text-muted);
+     font-size: 0.9rem;
+     letter-spacing: 0.15em;
+     font-weight: 600;
+     text-transform: uppercase;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     margin-bottom: 12px;
+   }
+
+   .muted::before {
+     content: '';
+     display: inline-block;
+     width: 24px;
+     height: 1px;
+     background: var(--text-muted);
+   }
+
+   h1 {
+     font-size: clamp(3rem, 7vw, 5.5rem);
+     line-height: 1;
+     font-weight: 800;
+     letter-spacing: -0.03em;
+     background: linear-gradient(to right, #fff 40%, #888 100%);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     margin-bottom: 24px;
+   }
+
+   .hero-desc {
+     color: var(--text-muted);
+     margin-top: 20px;
+     max-width: 520px;
+     font-size: 1.1rem;
+     line-height: 1.7;
+   }
+
+   /* Tombol dengan Efek Hover & Transisi Modern */
+   .btn {
+     display: inline-flex;
+     align-items: center;
+     gap: 10px;
+     margin-top: 36px;
+     padding: 16px 32px;
+     border: 1px solid var(--panel-border);
+     background: rgba(255, 255, 255, 0.02);
+     backdrop-filter: blur(5px);
+     border-radius: 999px;
+     color: #fff;
+     text-decoration: none;
+     font-weight: 600;
+     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+   }
+
+   .btn:hover {
+     background: var(--accent-color);
+     color: #000;
+     border-color: var(--accent-color);
+     transform: translateY(-4px);
+     box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+   }
+
+   .btn i {
+     transition: transform 0.3s ease;
+   }
+
+   .btn:hover i {
+     transform: translateY(4px);
+   }
+
+   /* Panel Styling */
+   .panel {
+     background: var(--panel-bg);
+     backdrop-filter: blur(20px);
+     -webkit-backdrop-filter: blur(20px);
+     border: 1px solid var(--panel-border);
+     border-radius: 24px;
+     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+     position: relative;
+     overflow: hidden;
+   }
+
+   /* Glow Border Effect on Hover */
+   .panel::after {
+     content: '';
+     position: absolute;
+     inset: 0;
+     border-radius: 24px;
+     padding: 1px;
+     background: linear-gradient(to bottom right, rgba(255,255,255,0.2), transparent, rgba(255,255,255,0.05));
+     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+     -webkit-mask-composite: xor;
+     mask-composite: exclude;
+     pointer-events: none;
+     transition: opacity 0.5s;
+     opacity: 0.5;
+   }
+
+   .panel:hover {
+     transform: translateY(-8px) scale(1.01);
+     background: var(--panel-hover-bg);
+     border-color: var(--panel-hover-border);
+     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.02);
+   }
+
+   .panel:hover::after {
+     opacity: 1;
+   }
+
+   .profile {
+     padding: 36px;
+     animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+   }
+
+   .profile h2 {
+     font-size: 1.5rem;
+     margin-bottom: 24px;
+     display: flex;
+     align-items: center;
+     gap: 12px;
+   }
+
+   .profile h2::before {
+     content: '\f05a';
+     font-family: 'Font Awesome 6 Free';
+     font-weight: 900;
+     color: #aaa;
+   }
+
+   /* Tabel Quick Info */
+   table {
+     width: 100%;
+     border-collapse: collapse;
+   }
+
+   td {
+     padding: 18px 0;
+     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+     font-size: 0.95rem;
+   }
+
+   tr:last-child td {
+     border-bottom: none;
+   }
+
+   td:first-child {
+     color: var(--text-muted);
+     width: 35%;
+     font-weight: 500;
+   }
+
+   td:second-child {
+     font-weight: 600;
+   }
+
+   /* Grid System */
+   .grid {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 30px;
+     margin: 60px 0;
+   }
+
+   .card {
+     padding: 36px;
+   }
+
+   .card h2 {
+     font-size: 1.6rem;
+     margin-bottom: 20px;
+     display: flex;
+     align-items: center;
+     gap: 12px;
+   }
+
+   /* Ikon Judul Dinamis */
+   .card-about h2::before { content: '\f4ff'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+   .card-photo h2::before { content: '\f03e'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+   .card-traits h2::before { content: '\f005'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+   .card-quote h2::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+
+   /* Scroll-reveal Classes */
+   .reveal {
+     opacity: 0;
+     transform: translateY(40px);
+     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   }
+
+   .reveal.active {
+     opacity: 1;
+     transform: translateY(0);
+   }
+
+   /* Badge-badge Interaktif */
+   .badge-container {
+     margin-top: 24px;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 10px;
+   }
+
+   .badge {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     background: rgba(255, 255, 255, 0.05);
+     border: 1px solid rgba(255, 255, 255, 0.08);
+     padding: 10px 18px;
+     border-radius: 999px;
+     font-size: 0.85rem;
+     font-weight: 600;
+     color: var(--text-primary);
+     cursor: default;
+     transition: all 0.3s ease;
+   }
+
+   .badge:hover {
+     background: rgba(255, 255, 255, 0.12);
+     border-color: rgba(255, 255, 255, 0.2);
+     transform: scale(1.05);
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+   }
+
+   /* Area Foto */
+   .photo-container {
+     position: relative;
+     border-radius: 18px;
+     overflow: hidden;
+     margin-top: 15px;
+     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+     aspect-ratio: 16/10;
+     background: #111;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+
+   .photo-container img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   }
+
+   /* Fallback Ilustrasi SVG yang Keren Jika hobi.jpeg Tidak Ada */
+   .photo-placeholder {
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(135deg, #151515 0%, #252525 100%);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     color: #444;
+     gap: 15px;
+     z-index: 1;
+     transition: opacity 0.5s ease;
+   }
+
+   .photo-placeholder i {
+     font-size: 3rem;
+     color: #666;
+     animation: guitarPulse 3s infinite ease-in-out;
+   }
+
+   @keyframes guitarPulse {
+     0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+     50% { transform: scale(1.1) rotate(5deg); opacity: 1; color: #fff; }
+   }
+
+   .photo-container:hover img {
+     transform: scale(1.08);
+   }
+
+   /* Kelebihan & Kekurangan Columns */
+   .cols {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 30px;
+   }
+
+   .col-part h3 {
+     font-size: 1.15rem;
+     margin-bottom: 18px;
+     color: #fff;
+     font-weight: 600;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+
+   .col-part.pros h3 { color: #a3e635; } /* Lime green */
+   .col-part.cons h3 { color: #f87171; } /* Light red */
+
+   ul {
+     list-style: none;
+   }
+
+   li {
+     margin: 14px 0;
+     position: relative;
+     padding-left: 28px;
+     color: var(--text-muted);
+     font-size: 0.95rem;
+     transition: color 0.3s ease, transform 0.3s ease;
+   }
+
+   li:hover {
+     color: #fff;
+     transform: translateX(4px);
+   }
+
+   li::before {
+     font-family: 'Font Awesome 6 Free';
+     position: absolute;
+     left: 0;
+     top: 1px;
+     font-weight: 900;
+     transition: transform 0.3s ease;
+   }
+
+   .pros li::before {
+     content: '\f058'; /* Check circle */
+     color: #a3e635;
+   }
+
+   .cons li::before {
+     content: '\f057'; /* Minus/Times circle */
+     color: #f87171;
+   }
+
+   /* Efek Khas Quote */
+   .quote-container {
+     position: relative;
+     padding: 20px 0 0 20px;
+   }
+
+   .quote-text {
+     font-size: 1.5rem;
+     line-height: 1.8;
+     font-weight: 500;
+     color: #e5e7eb;
+     font-style: italic;
+   }
+
+   .quote-author {
+     margin-top: 15px;
+     font-size: 0.9rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: 0.1em;
+     color: var(--text-muted);
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+
+   .quote-author::before {
+     content: '';
+     width: 15px;
+     height: 2px;
+     background: var(--text-muted);
+   }
+
+   /* Penyeimbang Audio Visualizer (Untuk Menambah Aura Audiophile Satria) */
+   .audiophile-gadget {
+     margin-top: 24px;
+     padding: 16px;
+     background: rgba(255,255,255,0.02);
+     border-radius: 16px;
+     border: 1px solid rgba(255,255,255,0.05);
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 15px;
+   }
+
+   .audio-info {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+   }
+
+   .audio-info i {
+     font-size: 1.4rem;
+     color: #888;
+     animation: rotateVinyl 4s infinite linear;
+     animation-play-state: paused;
+   }
+
+   .playing .audio-info i {
+     animation-play-state: running;
+     color: #fff;
+   }
+
+   @keyframes rotateVinyl {
+     100% { transform: rotate(360deg); }
+   }
+
+   .audio-title {
+     font-size: 0.8rem;
+     font-weight: 600;
+   }
+   
+   .audio-sub {
+     font-size: 0.7rem;
+     color: var(--text-muted);
+   }
+
+   .visualizer-bars {
+     display: flex;
+     align-items: flex-end;
+     gap: 3px;
+     height: 24px;
+   }
+
+   .v-bar {
+     width: 3px;
+     background: #666;
+     height: 4px;
+     transition: height 0.1s ease;
+     border-radius: 1px;
+   }
+
+   .playing .v-bar {
+     background: #fff;
+     animation: bounceBar 1.2s infinite ease-in-out alternate;
+   }
+
+   .playing .v-bar:nth-child(1) { animation-delay: 0.1s; }
+   .playing .v-bar:nth-child(2) { animation-delay: 0.4s; }
+   .playing .v-bar:nth-child(3) { animation-delay: 0.2s; }
+   .playing .v-bar:nth-child(4) { animation-delay: 0.6s; }
+   .playing .v-bar:nth-child(5) { animation-delay: 0.3s; }
+
+   @keyframes bounceBar {
+     0% { height: 4px; }
+     100% { height: 24px; }
+   }
+
+   .audio-btn {
+     background: none;
+     border: 1px solid rgba(255,255,255,0.1);
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     color: #fff;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transition: all 0.3s ease;
+   }
+
+   .audio-btn:hover {
+     background: #fff;
+     color: #000;
+     transform: scale(1.1);
+   }
+
+   /* Footer */
+   footer {
+     text-align: center;
+     color: var(--text-muted);
+     padding: 60px 0 40px;
+     font-size: 0.85rem;
+     letter-spacing: 0.05em;
+     position: relative;
+   }
+
+   footer p {
+     margin-top: 8px;
+   }
+
+   /* Media Queries untuk Responsif */
+   @media (max-width: 900px) {
+     .hero {
+       grid-template-columns: 1fr;
+       padding-top: 60px;
+       gap: 40px;
+       min-height: auto;
+     }
+
+     .grid {
+       grid-template-columns: 1fr;
+       gap: 24px;
+     }
+
+     .cols {
+       grid-template-columns: 1fr;
+       gap: 24px;
+     }
+     
+     .profile {
+       padding: 24px;
+     }
+     
+     .card {
+       padding: 24px;
+     }
+   }
   </style>
  </head>
  <body>
+
+  <!-- Background Interactive Glow Tracker Element -->
+  <div class="bg-glow-container">
+    <div class="glow-spot" id="mouseGlow"></div>
+  </div>
+
   <div class="wrap">
+   <!-- Hero Section -->
    <section class="hero">
-    <div>
+    <div class="hero-content">
      <div class="muted">
       PORTFOLIO / BIODATA
      </div>
@@ -40,13 +657,15 @@ footer{text-align:center;color:#777;padding:40px}
       <br/>
       SATRIA
      </h1>
-     <p class="muted" style="margin-top:20px;max-width:520px">
+     <p class="hero-desc">
       Siswa Rekayasa Perangkat Lunak yang tertarik pada komputer, pemrograman, gitar, gaming, dan dunia audio.
      </p>
      <a class="btn" href="#info">
-      Lihat Profil
+      Lihat Profil <i class="fa-solid fa-arrow-down"></i>
      </a>
     </div>
+    
+    <!-- Quick Info Panel -->
     <div class="panel profile">
      <h2>
       Quick Info
@@ -54,7 +673,7 @@ footer{text-align:center;color:#777;padding:40px}
      <table>
       <tr>
        <td>
-        Nama
+        <i class="fa-regular fa-user" style="margin-right: 8px;"></i> Nama
        </td>
        <td>
         Muhammad Satria
@@ -62,15 +681,15 @@ footer{text-align:center;color:#777;padding:40px}
       </tr>
       <tr>
        <td>
-        Jurusan
+        <i class="fa-solid fa-code" style="margin-right: 8px;"></i> Jurusan
        </td>
        <td>
-        RPL
+        RPL (Rekayasa Perangkat Lunak)
        </td>
       </tr>
       <tr>
        <td>
-        Alamat
+        <i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i> Alamat
        </td>
        <td>
         Semarang, Jawa Tengah
@@ -78,103 +697,267 @@ footer{text-align:center;color:#777;padding:40px}
       </tr>
       <tr>
        <td>
-        Hobi
+        <i class="fa-solid fa-heart" style="margin-right: 8px;"></i> Hobi
        </td>
        <td>
         Gaming • Gitar • Audiophile
        </td>
       </tr>
      </table>
+     
+     <!-- Audiophile Widget Hobi -->
+     <div class="audiophile-gadget" id="audioPlayerWidget">
+       <div class="audio-info">
+         <i class="fa-solid fa-compact-disc"></i>
+         <div>
+           <div class="audio-title">Lofi Guitar Moods</div>
+           <div class="audio-sub">Satria's Focus Playlist</div>
+         </div>
+       </div>
+       <div class="visualizer-bars">
+         <div class="v-bar"></div>
+         <div class="v-bar"></div>
+         <div class="v-bar"></div>
+         <div class="v-bar"></div>
+         <div class="v-bar"></div>
+       </div>
+       <button class="audio-btn" id="playBtn" aria-label="Play/Pause Ambient Sound">
+         <i class="fa-solid fa-play"></i>
+       </button>
+     </div>
+     
     </div>
    </section>
+
+   <!-- Grid Sections with Scroll Reveal Anim -->
    <div class="grid" id="info">
-    <div class="panel card">
+    
+    <!-- Tentang Saya -->
+    <div class="panel card card-about reveal">
      <h2>
       Tentang Saya
      </h2>
-     <p style="line-height:2;color:#cfcfcf;margin-top:14px">
-      Saya senang mempelajari teknologi dan terus mengembangkan kemampuan di bidang perangkat lunak. Saya menikmati tantangan baru dan selalu berusaha menyelesaikan pekerjaan dengan baik.
+     <p style="line-height:1.8; color:#cfcfcf; margin-top:14px; font-size: 1.05rem;">
+      Saya senang mempelajari teknologi baru dan terus mengembangkan kemampuan di bidang rekayasa perangkat lunak. Saya sangat menikmati tantangan baru di dunia pemrograman dan selalu berusaha menyelesaikan setiap target dengan komitmen tinggi.
      </p>
-     <div style="margin-top:20px">
-      <span class="badge">
-       HTML
-      </span>
-      <span class="badge">
-       CSS
-      </span>
-      <span class="badge">
-       RPL
-      </span>
-      <span class="badge">
-       Gaming
-      </span>
-      <span class="badge">
-       Gitar
-      </span>
+     <div class="badge-container">
+      <span class="badge"><i class="fa-brands fa-html5" style="color: #e34c26;"></i> HTML</span>
+      <span class="badge"><i class="fa-brands fa-css3-alt" style="color: #264de4;"></i> CSS</span>
+      <span class="badge"><i class="fa-solid fa-laptop-code" style="color: #ffffff;"></i> RPL</span>
+      <span class="badge"><i class="fa-solid fa-gamepad" style="color: #a3e635;"></i> Gaming</span>
+      <span class="badge"><i class="fa-solid fa-guitar" style="color: #eab308;"></i> Gitar</span>
      </div>
     </div>
-    <div class="panel card photo">
+    
+    <!-- Foto Hobi -->
+    <div class="panel card card-photo reveal">
      <h2>
       Foto Hobi
      </h2>
-     <img src="hobi.jpeg"/>
-     <p class="muted" style="margin-top:12px">
-      foto salah satu hobi dadakan pas nugas ini
-      <b>
-       hobi.jpeg
-      </b>
-      .
+     <div class="photo-container">
+       <!-- Fallback SVG/Icon layout when local photo "hobi.jpeg" doesn't load -->
+       <div class="photo-placeholder" id="photoPlaceholder">
+         <i class="fa-solid fa-guitar"></i>
+         <span style="font-size: 0.9rem; color: #888;">Gitar & Musik - hobi.jpeg</span>
+       </div>
+       <img src="hobi.jpeg" id="hobiImg" alt="Foto hobi gitar atau gaming Muhammad Satria" onerror="showPlaceholder()"/>
+     </div>
+     <p class="muted" style="margin-top:16px; font-size: 0.85rem;">
+       <i class="fa-solid fa-camera" style="margin-right: 6px;"></i> Dokumentasi hobi dadakan pas nugas: <b>hobi.jpeg</b>.
      </p>
     </div>
-    <div class="panel card cols">
-     <div>
-      <h2>
+    
+    <!-- Kelebihan & Kekurangan -->
+    <div class="panel card card-traits cols reveal">
+     <div class="col-part pros">
+      <h3>
        Kelebihan
-      </h2>
+      </h3>
       <ul>
        <li>
-        Mudah belajar
+        Cepat belajar hal baru
        </li>
        <li>
-        Bertanggung jawab
+        Memiliki rasa tanggung jawab
        </li>
        <li>
-        Disiplin
+        Disiplin tinggi dalam tugas
        </li>
        <li>
-        Mengikuti bantara
+        Mengikuti organisasi bantara
        </li>
       </ul>
      </div>
-     <div>
-      <h2>
+     <div class="col-part cons">
+      <h3>
        Kekurangan
-      </h2>
+      </h3>
       <ul>
        <li>
-        Masih meningkatkan public speaking
+        Sedang melatih public speaking
        </li>
        <li>
-        Terkadang terlalu fokus pada hobi
+        Terkadang terlalu asyik pada hobi
        </li>
        <li>
-        Masih terus belajar
+        Masih dalam proses belajar konstan
        </li>
       </ul>
      </div>
     </div>
-    <div class="panel card">
+    
+    <!-- Quote -->
+    <div class="panel card card-quote reveal">
      <h2>
       Quote
      </h2>
-     <p style="font-size:1.4rem;line-height:1.8;color:#ddd">
-      "Terus belajar, terus berkembang, dan jangan takut mencoba hal baru."
-     </p>
+     <div class="quote-container">
+       <p class="quote-text">
+        "Terus belajar, terus berkembang, dan jangan takut mencoba hal baru."
+       </p>
+       <div class="quote-author">
+         Muhammad Satria
+       </div>
+     </div>
     </div>
+    
    </div>
+
+   <!-- Footer -->
    <footer>
-    Designed in Monochrome Style • 2026
+    <p>Designed in Monochrome Animated Style • 2026</p>
+    <p style="font-size: 0.75rem; color: #555; margin-top: 5px;">Created for Satria's RPL Journey</p>
    </footer>
   </div>
+
+  <script>
+    // 1. Reveal on Scroll (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Setelah terungkap, tidak perlu di-observe lagi demi performa
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12, // Elemen mulai muncul jika 12% bagiannya terlihat
+      rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => {
+      revealOnScroll.observe(el);
+    });
+
+    // Jalankan pengecekan pertama setelah load untuk elemen di area atas viewport
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        revealElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            el.classList.add('active');
+          }
+        });
+      }, 150);
+    });
+
+    // 2. Interactive Background Glow Mouse Tracker
+    const mouseGlow = document.getElementById('mouseGlow');
+    
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      // Update posisi div glow spot secara efisien
+      mouseGlow.style.left = `${x}px`;
+      mouseGlow.style.top = `${y}px`;
+    });
+
+    // 3. Fallback Handler untuk Foto Hobi
+    function showPlaceholder() {
+      // Jika hobi.jpeg gagal diload atau tidak tersedia, placeholder tetap terlihat
+      document.getElementById('photoPlaceholder').style.opacity = '1';
+      document.getElementById('hobiImg').style.display = 'none';
+    }
+
+    // Coba deteksi apakah gambar berhasil diload
+    const imgEl = document.getElementById('hobiImg');
+    if (imgEl) {
+      imgEl.onload = function() {
+        document.getElementById('photoPlaceholder').style.opacity = '0';
+      };
+    }
+
+    // 4. Ambient / Music Beat Visualizer Simulator
+    const playBtn = document.getElementById('playBtn');
+    const widget = document.getElementById('audioPlayerWidget');
+    let isPlaying = false;
+    let audioContext;
+    let oscillator;
+
+    playBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        widget.classList.add('playing');
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        playBtn.style.background = '#fff';
+        playBtn.style.color = '#000';
+        playBtn.setAttribute('title', 'Mute Lofi Ambient');
+        playSynthesizer(true);
+      } else {
+        widget.classList.remove('playing');
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        playBtn.style.background = 'none';
+        playBtn.style.color = '#fff';
+        playBtn.setAttribute('title', 'Play Lofi Ambient');
+        playSynthesizer(false);
+      }
+    });
+
+    // Menghasilkan bunyi synthesizer Ambient Ringan yang syahdu (Opsional - keren untuk audiophiile)
+    function playSynthesizer(start) {
+      if (!start) {
+        if (oscillator) {
+          try { oscillator.stop(); } catch(e) {}
+        }
+        return;
+      }
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        audioContext = new AudioContextClass();
+        
+        oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.type = 'triangle'; // Suara lembut mirip gitar/keyboard
+        oscillator.frequency.setValueAtTime(146.83, audioContext.currentTime); // Kunci D3
+        
+        // Melodi Lofi Sederhana
+        const notes = [146.83, 164.81, 196.00, 220.00]; // D, E, G, A
+        let noteIndex = 0;
+        
+        const intervalId = setInterval(() => {
+          if (!isPlaying || !oscillator) {
+            clearInterval(intervalId);
+            return;
+          }
+          noteIndex = (noteIndex + 1) % notes.length;
+          oscillator.frequency.setValueAtTime(notes[noteIndex], audioContext.currentTime);
+        }, 1500);
+
+        gainNode.gain.setValueAtTime(0.04, audioContext.currentTime); // Volume sangat pelan/background lofi
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.start();
+      } catch (error) {
+        console.log("Audio Context diblokir browser sebelum interaksi pengguna.");
+      }
+    }
+  </script>
  </body>
 </html>
